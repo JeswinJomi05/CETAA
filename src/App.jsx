@@ -66,7 +66,7 @@ export default function App() {
             <EventsHub />
 
             {/* Newsroom updates and Souvenir contribution progress */}
-            <Newsroom />
+            <Newsroom onNavigate={handleNavigate} />
 
             {/* Networks list (Alumni profiles, chapters, and social stream) */}
             <AlumniNetwork />

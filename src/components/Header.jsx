@@ -68,24 +68,16 @@ export default function Header({ onRegisterClick, currentPage, onNavigate }) {
       <nav className="header-main">
         <div className="container header-main-container">
           <a href="#" className="brand-section" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>
-            <div className="logo-container">
-              <div 
+            <div className="logo-container" style={{ overflow: 'hidden' }}>
+              <img 
+                src="/logo.png" 
+                alt="CETAA Logo" 
                 style={{ 
-                  color: 'var(--accent-foreground)', 
-                  fontWeight: 900, 
-                  fontSize: '1rem', 
-                  fontFamily: 'var(--font-heading)',
-                  backgroundColor: 'var(--accent)',
-                  width: '100%',
-                  height: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textAlign: 'center'
-                }}
-              >
-                CETAA
-              </div>
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover' 
+                }} 
+              />
             </div>
             <div className="brand-info">
               <h1>COLLEGE OF ENGINEERING TRIVANDRUM</h1>

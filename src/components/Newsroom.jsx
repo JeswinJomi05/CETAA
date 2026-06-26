@@ -1,29 +1,8 @@
 import React, { useState } from 'react';
-import { Award, BookOpen, Send, Calendar, CheckCircle } from 'lucide-react';
-import confetti from 'canvas-confetti';
+import { Award, Calendar, CheckCircle, Building2, Sparkles, ArrowRight } from 'lucide-react';
 
-export default function Newsroom() {
-  const [souvenirName, setSouvenirName] = useState('');
-  const [souvenirYear, setSouvenirYear] = useState('');
-  const [souvenirMemory, setSouvenirMemory] = useState('');
-  const [souvenirSubmitted, setSouvenirSubmitted] = useState(false);
+export default function Newsroom({ onNavigate }) {
   const [showStadiumDetails, setShowStadiumDetails] = useState(false);
-
-  const handleSouvenirSubmit = (e) => {
-    e.preventDefault();
-    if (!souvenirName || !souvenirYear || !souvenirMemory) {
-      alert('Please fill out all fields before submitting.');
-      return;
-    }
-    
-    setSouvenirSubmitted(true);
-    // Confetti effect!
-    confetti({
-      particleCount: 150,
-      spread: 70,
-      origin: { y: 0.6 }
-    });
-  };
 
   return (
     <section id="news" className="container animate-fade-in-up" style={{ marginBottom: '48px' }}>
@@ -77,108 +56,55 @@ export default function Newsroom() {
           </div>
         </div>
 
-        {/* Right Card: CETAA Souvenir 2026 */}
+        {/* Right Card: Diamond Jubilee Hall Renovation Campaign Widget */}
         <div className="souvenir-card">
           <div className="souvenir-header">
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <BookOpen size={20} style={{ color: 'var(--accent)' }} />
-              <h3>CETAA SOUVENIR 2026</h3>
+              <Building2 size={20} style={{ color: 'var(--accent)' }} />
+              <h3>JUBILEE HALL RENOVATION</h3>
             </div>
-            <span style={{ fontSize: '0.85rem', color: 'var(--muted-foreground)', fontWeight: 700 }}>18 JUNE 2026</span>
+            <span style={{ fontSize: '0.85rem', color: 'var(--accent)', fontWeight: 800 }}>LIVE CAMPAIGN</span>
           </div>
 
           <div className="souvenir-content">
             <div className="souvenir-intro">
-              <div className="souvenir-img-wrapper">
-                <img src="/cetaa_souvenir.png" alt="CETAA Souvenir 2026 Brochure" />
+              <div className="souvenir-img-wrapper" style={{ width: '120px', height: '90px' }}>
+                <img src="/diamond_jubilee_renovation.png" alt="Diamond Jubilee Hall Proposal Rendering" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
               </div>
-              <p>
-                AS WE PREPARE FOR <strong>CETAA DAY 2026</strong> ON 25 JULY 2026, WE INVITE YOU TO CONTRIBUTE ARTICLES, TRAVELOGUES, DRAWINGS, AND FOND CAMPUS MEMORIES TO THE UPCOMING SOUVENIR PUBLICATION THAT CAPTURES OUR LEGACY ACROSS GENERATIONS.
+              <p style={{ fontSize: '0.9rem', color: 'var(--muted-foreground)' }}>
+                JOIN ALUMNI WORLDWIDE IN SUPPORTING THE RESTORATION OF CET'S HISTORIC **DIAMOND JUBILEE HALL**. SPONSOR CENTRAL AIR-CONDITIONING, ACOUSTIC TREATMENTS, AND ANCILLARY SPACES.
               </p>
             </div>
 
-            {/* Progress indicator */}
+            {/* Campaign Progress Meter */}
             <div className="souvenir-progress-container">
               <div className="progress-label">
-                <span>ALUMNI CONTRIBUTION PROGRESS</span>
-                <span style={{ color: 'var(--accent)' }}>84% COLLECTED</span>
+                <span>CAMPAIGN TRACKER (INR)</span>
+                <span style={{ color: 'var(--accent)' }}>32.1% RAISED</span>
               </div>
               <div className="progress-bar-bg">
-                <div className="progress-bar-fill" style={{ width: '84%' }}></div>
+                <div className="progress-bar-fill" style={{ width: '32.1%' }}></div>
               </div>
               <p style={{ fontSize: '0.8rem', color: 'var(--muted-foreground)', marginTop: '8px', textAlign: 'center' }}>
-                840 OF 1000 MEMORIES AND ARTICLES GATHERED. HELP US REACH OUR TARGET!
+                ₹48.25 LAKHS RAISED OF ₹1.5 CRORE TOTAL PROJECT TARGET
               </p>
             </div>
 
-            {/* Interactive Form */}
+            {/* View Campaign / Contribute CTA Button */}
             <div className="souvenir-actions">
-              {!souvenirSubmitted ? (
-                <form onSubmit={handleSouvenirSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  <div className="souvenir-form-group" style={{ display: 'flex', gap: '12px' }}>
-                    <input 
-                      type="text" 
-                      placeholder="YOUR NAME" 
-                      className="souvenir-input" 
-                      value={souvenirName}
-                      onChange={(e) => setSouvenirName(e.target.value)}
-                      required
-                    />
-                    <input 
-                      type="number" 
-                      placeholder="GRADUATION YEAR" 
-                      className="souvenir-input"
-                      value={souvenirYear}
-                      onChange={(e) => setSouvenirYear(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="souvenir-form-group">
-                    <textarea 
-                      placeholder="SHARE A SHORT MEMORY OR MESSAGE FOR THE SOUVENIR (MAX 200 WORDS)..." 
-                      className="souvenir-input"
-                      rows="3"
-                      value={souvenirMemory}
-                      onChange={(e) => setSouvenirMemory(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <button type="submit" className="cta-btn" style={{ width: '100%' }}>
-                    <Send size={16} />
-                    <span>SUBMIT TO EDITORIAL TEAM</span>
-                  </button>
-                </form>
-              ) : (
-                <div 
-                  className="animate-fade-in" 
-                  style={{ 
-                    textAlign: 'center', 
-                    padding: '32px 24px', 
-                    border: '2px solid var(--accent)', 
-                    backgroundColor: 'var(--bg-secondary)'
-                  }}
-                >
-                  <CheckCircle size={36} style={{ color: 'var(--accent)', marginBottom: '12px', display: 'inline-block' }} />
-                  <h4 style={{ color: 'var(--accent)', marginBottom: '8px', fontSize: '1.2rem' }}>THANK YOU, {souvenirName}!</h4>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--muted-foreground)' }}>
-                    YOUR MEMORY HAS BEEN SUBMITTED SUCCESSFULLY TO THE CETAA EDITORIAL BOARD. LET'S MAKE SOUVENIR 2026 MEMORABLE!
-                  </p>
-                  <button 
-                    onClick={() => {
-                      setSouvenirSubmitted(false);
-                      setSouvenirName('');
-                      setSouvenirYear('');
-                      setSouvenirMemory('');
-                    }}
-                    style={{ marginTop: '16px', fontSize: '0.8rem', color: 'var(--accent)', textDecoration: 'underline', fontWeight: 700 }}
-                  >
-                    SUBMIT ANOTHER RESPONSE
-                  </button>
-                </div>
-              )}
+              <button 
+                onClick={() => onNavigate('renovation')}
+                className="cta-btn" 
+                style={{ width: '100%', gap: '8px' }}
+              >
+                <Sparkles size={16} />
+                <span>SUPPORT PROJECT & VIEW DETAILS</span>
+                <ArrowRight size={16} />
+              </button>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );
